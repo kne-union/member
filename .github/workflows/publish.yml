@@ -8,12 +8,7 @@ on:
 jobs:
   publish:
     if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: manifest 🏗️
-        run: npx @kne/md-index
-      - uses: kne-union/actions-deploy-static-data@master
-        with:
-          token: ${{ secrets.ADMIN_TOKEN }}
-          name: member
+    uses: kne-union/actions/.github/workflows/publish-content-workflow.yml@master
+    secrets: inherit
+    with:
+      publish-to-npm: true
